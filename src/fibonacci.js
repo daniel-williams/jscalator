@@ -3,15 +3,9 @@ const solution1 = num => {
     throw Error('expects argument to be a positive number');
   }
 
-  if(num === 0) {
-    return 0;
-  }
-
-  if(num === 1) {
-    return 1;
-  }
-
-  return solution1(num - 1) + solution1(num - 2);
+  return num === 0 || num === 1
+    ? num
+    : solution1(num - 1) + solution1(num - 2);
 };
 
 module.exports = [
