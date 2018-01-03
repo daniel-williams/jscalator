@@ -1,4 +1,5 @@
-var solutions = require('./fibonacci');
+const { constants, solutions } = require('./fibonacci');
+
 
 describe('testing fibonacci solutions', () => {
   it('should be an array of solutions', () => {

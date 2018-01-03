@@ -8,6 +8,8 @@ const solution1 = num => {
     : solution1(num - 1) + solution1(num - 2);
 };
 
-module.exports = [
-  solution1,
-];
+module.exports = {
+  solutions: [
+    solution1,
+  ],
+};
