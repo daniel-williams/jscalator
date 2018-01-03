@@ -6,7 +6,7 @@ describe('testing fibonacci solutions', () => {
   });
 
   solutions.forEach((x, i) => {
-    describe(`testing solution # ${i + 1}`, () => {
+    describe(`testing solution #${i + 1}`, () => {
       doTests(x);
     });
   });
@@ -23,15 +23,17 @@ function doTests(fibonacci) {
     }).toThrow();
   });
 
-  it('should return 0 given 0', () => {
+  it('fibonacci(0) should return 0', () => {
     expect(fibonacci(0)).toEqual(0);
   });
 
-  it('should return 1 given 1', () => {
+  it('fibonacci(1) should return 1', () => {
     expect(fibonacci(1)).toEqual(1);
   });
 
-  it('should return the fibonacci of n', () => {
-    expect(fibonacci(7)).toEqual(fibonacci(5) + fibonacci(6))
+  it('fibonacci(n) should return (fibonacci(n - 1) + fibonacci(n - 2))', () => {
+    const n = 8;
+
+    expect(fibonacci(n)).toEqual(fibonacci(n - 1) + fibonacci(n - 2))
   });
 }
