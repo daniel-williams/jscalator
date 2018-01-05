@@ -20,6 +20,10 @@ function doTests(fn) {
     expect(typeof fn === 'function').toBe(true);
   });
 
+  it('should fail when array is empty', () => {
+    expect(fn([], 0)).toBe(false);
+  });
+
   it('should find first element', () => {
     expect(fn(a, a[0])).toBe(true);
   });
