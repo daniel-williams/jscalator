@@ -47,6 +47,31 @@ const solution1 = phoneNumber => {
   return result;
 };
 
+const solution2 = phoneNumber => {
+  const result = [];
+  const digits = phoneNumber.toString().split('').map(Number);
+
+  function fn(a, prefix) {
+    if(a.length === 0 && prefix) {
+      result.push(prefix);
+      return;
+    }
+
+    const letters = keyToLetterMap[a[0]];
+    const nextDigits = a.slice(1);
+
+    if(letters.length === 0) {
+      fn(nextDigits, prefix);
+    }
+
+    letters.forEach(l => fn(nextDigits, prefix + l));
+  }
+
+  fn(digits, '');
+
+  return result;
+}
+
 module.exports = {
   constants: {
     keyToLetterMap,
@@ -54,6 +79,7 @@ module.exports = {
   },
   solutions: [
     solution1,
+    solution2,
   ],
 };
 
