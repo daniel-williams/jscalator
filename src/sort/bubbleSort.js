@@ -1,16 +1,19 @@
 const solution1 = (a) => {
-  let sorted = false;
   let result = a.slice();
+  let sorted = false;
+  let len = result.length;
 
   while(!sorted) {
     sorted = true;
 
-    for(i = 0;i < result.length - 1; i++) {
+    for(i = 0;i < len - 1; i++) {
       if(result[i] > result[i + 1]) {
         swap(result, i, i + 1);
         sorted = false;
       }
     }
+
+    len--; // each pass bubbles up largest value to last index
   }
 
   return result;
