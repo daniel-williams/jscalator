@@ -1,16 +1,16 @@
-const { constants, solutions } = require('./bubbleSort');
-// test with zero, positives, negatives, opposites, and duplicates
-const original = [34, 55, 120, 49, 4, -19, 19, 36, 49, 13, 100, 0, 99];
+const { constants, solutions } = require('./quickSort');
+ // test with zero, positives, negatives, opposites, and duplicates
+const original = [20, 45, -12, 15, 0, 134, 45, 12, 33, 100, -120];
 
-describe('testing bubbleSort solutions', () => {
-  it('should be any array of solutions', () => {
+describe('testing quickSort solutions', () => {
+  it('should contain an array of solutions', () => {
     expect(Array.isArray(solutions)).toBe(true);
   });
 
   solutions.forEach((solution, i) => {
-    describe(`testing solution #${i + 1}`, () => {
+    describe(`testing solution #${1}`, () => {
       doTests(solution, original);
-    })
+    });
   });
 });
 
