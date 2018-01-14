@@ -23,6 +23,14 @@ function doTests(fn, original) {
 
   it('returned array should be the same length as that passed in', () => expect(answer.length).toEqual(original.length));
 
+  it('should only contain values from original array', () => {
+    expect(answer.every(x => original.includes(x))).toBe(true);
+  });
+
+  it('should include every value from original array', () => {
+    expect(original.every(x => answer.includes(x))).toBe(true);
+  });
+
   it('should return array sorted in ascending order', () => {
     for(i = 0; i < answer.length - 1; i++) {
       expect(answer[i + 1]).toBeGreaterThanOrEqual(answer[i]);
