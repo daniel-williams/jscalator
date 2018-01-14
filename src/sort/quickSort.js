@@ -1,3 +1,6 @@
+// move lower/higher values to left/right of a pivot (pivot becomes sorted),
+// recurse on lower and higher segments
+
 function solution1(a) {
   let result = a.slice();
 

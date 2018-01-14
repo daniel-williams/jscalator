@@ -1,3 +1,5 @@
+// successive passes bubble the largest value to the end of the unsorted portion of the array
+
 const solution1 = (a) => {
   let result = a.slice();
   let sorted = false;
