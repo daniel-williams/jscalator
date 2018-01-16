@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watch --onlyChanged",
+    "test:watchAll": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
