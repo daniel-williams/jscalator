@@ -42,7 +42,7 @@ describe('testing priorityQueue solutions', () => {
         expect(q.extractMax().value).toEqual(3);
         expect(q.toArray().length).toEqual(0);
 
-        expect(q.extractMax().value === undefined);
+        expect(q.extractMax()).toBeNull();
       });
     });
   });

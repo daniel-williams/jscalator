@@ -27,11 +27,15 @@ class LinkedListPriorityQueue {
   }
 
   extractMax() {
-    let {value, priority, next} = this.first || {};
+    let result = this.first;
 
-    this.first = next;
+    this.first = this.first
+      ? this.first.next
+      : null;
 
-    return {value, priority};
+    return result
+      ? { value: result.value, priority: result.priority}
+      : null;
   }
 
   toArray() {
