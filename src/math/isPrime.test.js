@@ -1,9 +1,11 @@
-const { constants, solutions } = require('./primes');
+const { constants, solutions } = require('./isPrime');
 const tests = [
     [-19, false],
-    [0, false],
     ['wtf', false],
+    [0, false],
+    [1, false],
     [2, true],
+    [3, true],
     [4, false],
     [5, true],
     [9, false],
