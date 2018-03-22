@@ -1,4 +1,5 @@
-// moving left to right, each value is repeatedly moved left until no smaller left value is found
+// moving left to right, each value is repeatedly moved
+// left until no smaller left value is found
 
 const solution1 = (a) => {
   // gaurd against empty and one element arrays

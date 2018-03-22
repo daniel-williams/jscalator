@@ -1,4 +1,10 @@
-// successive passes bubble the largest value to the end of the unsorted portion of the array
+// Successive passes bubble the largest value
+// to the end of the unsorted portion of the array.
+
+// Time complexity
+// best: O(n)
+// average: O(n^2)
+// worst: O(n^2)
 
 const solution1 = (a) => {
   let result = a.slice();
