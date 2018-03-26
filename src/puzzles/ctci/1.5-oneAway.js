@@ -9,6 +9,11 @@
 // A) Check each char in strings, if not equal we need to branch and perform
 //    each edit type, afterwhich the strings should be equal.
 
+// It is assumed that only one string was edited.
+// Considering the three operations that can be performed, I don't believe it
+// matters which string (A or B) was actually edited, that is, inserting a char
+// to one is equivalent to having deleted that char from the other.
+
 function A(a, b) {
   for(let i = 0; i < a.length; i++) {
     if(a[i] !== b[i]) {
