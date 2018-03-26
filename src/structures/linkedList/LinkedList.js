@@ -16,9 +16,9 @@ class LinkedList {
 
     // special case: head node is null
     if(!this._head) {
-      this._head = newNode;
+      this.head = newNode;
     } else {
-      let node = this._head;
+      let node = this.head;
 
       // find the last node in list
       while(node.next) {
@@ -38,13 +38,13 @@ class LinkedList {
     }
 
     let newNode = new Node(data);
-    let node = this._head;
+    let node = this.head;
     let i = 0;
 
     // special case: insert at head node
     if(index === i) {
-      newNode.next = this._head;
-      this._head = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
       this._count++;
     } else {
       // find node that preceeds insertion point
@@ -60,11 +60,11 @@ class LinkedList {
   }
 
   remove(data) {
-    let node = this._head;
+    let node = this.head;
 
     // special case: remove head node
     if(node.data === data) {
-      this._head = node.next;
+      this.head = node.next;
       this._count--;
     } else {
       while(node.next) {
@@ -88,9 +88,9 @@ class LinkedList {
 
       // special case: remove head node
       if(i === index) {
-        this._head = this._head.next;
+        this.head = this.head.next;
       } else {
-        let node = this._head;
+        let node = this.head;
 
         // find node immediately preceeding the node to remove
         while(++i < index) {
@@ -104,9 +104,22 @@ class LinkedList {
     }
   }
 
+  getElementAt(index) {
+    if(index < 0 || index > this.size - 1) { return null; }
+
+    let node = this.head;
+    let i = 0;
+
+    while(i < index) {
+      node = node.next;
+    }
+
+    return node;
+  }
+
   toArray() {
     let result = [];
-    let node = this._head;
+    let node = this.head;
 
     while(node) {
       result.push(node.data);
@@ -165,15 +178,6 @@ function reverseRecursive(list) {
     return tail;
   }
 }
-
-const ll = new LinkedList();
-ll.insert('lacey');
-ll.insert('daniel');
-ll.insert('lexus');
-ll.insert('manly');
-
-// reverseIterative(ll);
-reverseRecursive(ll);
 
 module.exports = {
   LinkedList,
