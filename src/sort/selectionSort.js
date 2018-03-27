@@ -1,4 +1,5 @@
-// succesive passes identify (select) largest value and then swap to end of unsorted portion of array
+// succesive passes identify (select) largest value
+// and then swap to end of unsorted portion of array
 
 const solution1 = (a) => {
   let result = a.slice();
@@ -17,6 +18,20 @@ const solution1 = (a) => {
   return result;
 }
 
+const reviewSelectionSort = (a) => {
+  for(let i = a.length - 1; i > 0; i--) {
+    let max = 0;
+
+    for(let j = 0; j <= i; j++) {
+      if(a[j] > a[max]) { max = j; }
+    }
+
+    swap(a, i, max);
+  }
+
+  return a;
+}
+
 function swap(a, i, j) {
   const tmp = a[i];
 
@@ -28,5 +43,6 @@ module.exports = {
   constants: {},
   solutions: [
     solution1,
+    reviewSelectionSort,
   ]
 }
