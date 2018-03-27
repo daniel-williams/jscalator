@@ -69,10 +69,37 @@ function solution1Merge(a, b) {
   return result;
 }
 
+const reviewMergeSort = (a) => {
+  if(a.length < 2) { return a; }
+
+  let mid = Math.floor(a.length / 2);
+  let left = a.slice(0, mid);
+  let right = a.slice(mid);
+
+  return reviewMerge(reviewMergeSort(left), reviewMergeSort(right));
+}
+
+const reviewMerge = (left, right) => {
+  let result = [];
+  let l = 0;
+  let r = 0;
+
+  while(l < left.length && r < right.length) {
+    if(left[l] < right[r]) {
+      result.push(left[l++]);
+    } else {
+      result.push(right[r++]);
+    }
+  }
+
+  return result.concat(left.slice(l), right.slice(r));
+}
+
 module.exports = {
   constants: {},
   solutions: [
     solution1,
     solution2,
+    reviewMergeSort,
   ],
 };
