@@ -27,6 +27,23 @@ const solution1 = (a) => {
   return result;
 };
 
+const reviewBubbleSort = (a) => {
+  for(let i = a.length - 1; i > 0; i--) {
+    let sorted = true;
+
+    for(let j = 1; j <= i; j++) {
+      if(a[j - 1] > a[j]) {
+        swap(a, j - 1, j);
+        sorted = false;
+      }
+    }
+
+    if(sorted) { return a; }
+  }
+
+  return a;
+};
+
 function swap(a, i, j) {
   const tmp = a[i];
 
@@ -38,5 +55,6 @@ module.exports = {
   constants: {},
   solutions: [
     solution1,
+    reviewBubbleSort,
   ],
 }
