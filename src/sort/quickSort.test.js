@@ -8,7 +8,7 @@ describe('testing quickSort solutions', () => {
   });
 
   solutions.forEach((solution, i) => {
-    describe(`testing solution #${1}`, () => {
+    describe(`testing solution #${i + 1}`, () => {
       doTests(solution, original);
     });
   });
