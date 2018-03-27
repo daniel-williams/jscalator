@@ -112,6 +112,7 @@ class LinkedList {
 
     while(i < index) {
       node = node.next;
+      i++;
     }
 
     return node;
