@@ -142,6 +142,14 @@ class LinkedListNode {
   }
 }
 
+const buildList = (chars) => {
+  let list = new LinkedList();
+
+  chars.split('').forEach(c => list.insert(c));
+
+  return list;
+}
+
 function reverseIterative(list) {
   let node = list.head;
   let previous = null;
@@ -181,6 +189,7 @@ function reverseRecursive(list) {
 }
 
 module.exports = {
+  buildList,
   LinkedList,
   LinkedListNode,
 };
