@@ -22,41 +22,39 @@ function A(list) {
     if(set.has(node.data)) {
       // remove node reference from list
       previous.next = node.next;
+      node = node.next;
     } else {
       // else node data to set
       set.add(node.data);
+      // advance node pointers
+      previous = node;
+      node = node.next;
     }
-
-    // advance node pointers
-    previous = node;
-    node = node.next;
   }
 
   return list;
 }
 
 function B(list) {
-  // gaurd against empty list
-  if(!list.head) { return list; }
+  let node = list.head;
 
-  let startNode = list.head;
-
-  while(startNode) {
-    let previous = startNode;
-    let current = startNode.next;
+  while(node) {
+    let previous = node;
+    let current = node.next;
 
     while(current) {
       // check if dup
-      if(current.data === startNode.data) {
+      if(current.data === node.data) {
         // remove node reference from list
         previous.next = current.next;
+        current = current.next;
+      } else {
+        previous = current;
+        current = current.next;
       }
-
-      previous = current;
-      current = current.next;
     }
 
-    startNode = startNode.next;
+    node = node.next;
   }
 
   return list;
@@ -72,25 +70,15 @@ const LinkedList = require('../../../structures/linkedList/LinkedList').LinkedLi
 
 function getTestList() {
   let list = new LinkedList();
+  let chars = 'abbbbbcxxyyyzz';
 
-  list.insert(1);
-  list.insert(2);
-  list.insert(3);
-  list.insert(2);
-  list.insert(4);
-  list.insert(5);
-  list.insert(1);
+  chars.split('').forEach(c => list.insert(c));
 
   return list;
 }
 
 let testAList = getTestList();
 let testBList = getTestList();
-
-testBList.insert(6);
-testBList.insert(6);
-testBList.insert(7);
-testBList.insert(6);
 
 console.log(`A) Given list ${testAList.toArray()} --> ${A(testAList).toArray()}`);
 console.log(`B) Given list ${testBList.toArray()} --> ${B(testBList).toArray()}`);
