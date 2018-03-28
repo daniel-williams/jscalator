@@ -48,7 +48,34 @@ class LinkedList {
       this._count++;
     } else {
       // find node that preceeds insertion point
-      while(index < ++i) {
+      while(index > ++i) {
+        node = node.next;
+      }
+
+      // insert new node
+      newNode.next = node.next;
+      node.next = newNode;
+      this._count++;
+    }
+  }
+
+  insertNodeAt(index, newNode) {
+    if(index < 0 || index > this.size) {
+      throw 'Insert index out of range.';
+    }
+
+    let node = this.head;
+    let i = 0;
+
+    // special case: insert at head node
+    if(index === i) {
+      newNode.next = this.head;
+      this.head = newNode;
+      this._count++;
+    } else {
+      // find node that preceeds insertion point
+      while(index > ++i) {
+        console.log('advance');
         node = node.next;
       }
 
