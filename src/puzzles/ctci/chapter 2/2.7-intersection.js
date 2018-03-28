@@ -46,57 +46,49 @@ const A = (l1, l2) => {
 const B = (l1, l2) => {
   if(!l1.head || !l2.head) { return null; }
 
-  let l1Tail = l1Node = l1.head;
-  let l2Tail = l2Node = l2.head;
-  let l1Len = 0;
-  let l2Len = 0;
+  // Get length and tail of each list
+  let { len: l1Len, tail: l1Tail } = getLengthAndTail(l1.head);
+  let { len: l2Len, tail: l2Tail } = getLengthAndTail(l2.head);
 
-  while(l1Node) {
-    l1Len++;
-    l1Tail = l1Node;
-    l1Node = l1Node.next;
-  }
-
-  while(l2Node) {
-    l2Len++;
-    l2Tail = l2Node;
-    l2Node = l2Node.next;
-  }
-
-  // check last nodes to determine if lists intersect
+  // Check last nodes to determine if lists intersect
   if(l1Tail !== l2Tail) { return null; }
 
-  // reset pointers to list head
-  l1Node = l1.head;
-  l2Node = l2.head;
+  // Initially, set pointer to starting node of each list
+  let shorter = l1Len < l2Len ? l1.head : l2.head;
+  let longer = l1Len > l2Len ? l1.head : l2.head;
 
-  // advance past begining nodes from the longer list
-  if(l1Len > l2Len) {
-    let count = l1Len - l2Len;
-
-    while(count--) {
-      l1Node = l1Node.next;
-    }
-  } else if(l2Len > l1Len) {
-    let count = l2Len - l1Len;
-
-    while(count--) {
-      l2Node = l2Node.next;
-    }
-  }
+  // Sync pointers (from end)
+  longer = getKthNode(longer, Math.abs(l1Len - l2Len));
 
   // now that pointers are synced, compare each node to determine
   // the intersection node
-  while(l1Node) {
-    if(l1Node === l2Node) {
-      return l1Node;
-    }
-
-    l1Node = l1Node.next;
-    l2Node = l2Node.next;
+  while(shorter != longer) {
+    shorter = shorter.next;
+    longer = longer.next;
   }
 
-  return null;
+  return longer;
+}
+
+const getLengthAndTail = (node) => {
+  let len = 0;
+  let tail = node;
+
+  while(tail) {
+    len++;
+    tail = tail.next;
+  }
+
+  return { len, tail };
+}
+
+const getKthNode = (node, k) => {
+  while(node && k > 0) {
+    node = node.next;
+    k--;
+  }
+
+  return node;
 }
 
 module.exports = {
