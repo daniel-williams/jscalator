@@ -12,7 +12,7 @@ class LinkedList {
   }
 
   insert(data) {
-    let newNode = new Node(data);
+    let newNode = new LinkedListNode(data);
 
     // special case: head node is null
     if(!this._head) {
@@ -37,7 +37,7 @@ class LinkedList {
       throw 'Insert index out of range.';
     }
 
-    let newNode = new Node(data);
+    let newNode = new LinkedListNode(data);
     let node = this.head;
     let i = 0;
 
@@ -135,7 +135,7 @@ class LinkedList {
   }
 }
 
-class Node {
+class LinkedListNode {
   constructor(data) {
     this.data = data;
     this.next = null;
@@ -182,4 +182,5 @@ function reverseRecursive(list) {
 
 module.exports = {
   LinkedList,
+  LinkedListNode,
 };
