@@ -22,9 +22,9 @@ const LinkedList = require('../../../structures/linkedList/LinkedList').LinkedLi
 
 function getTestList() {
   let list = new LinkedList();
-  let chars = 'abcdefghijklmnopqrstuvwxyz';
+  let chars = 'abcde';
 
-  chars.split('').forEach(c => list.insert(c));
+  chars.split('').forEach(c => list.add(c));
 
   return list;
 }
@@ -33,5 +33,5 @@ let testList = getTestList();
 
 console.log('');
 console.log(`A) Given list [${testList.toArray()}]`);
-A(testList.getElementAt(2));
+A(testList.getNodeAt(2));
 console.log(`   -> [${testList.toArray()}]`)

@@ -41,7 +41,7 @@ const A = (l1, l2) => {
   while(total > 0) {
     let digit = total % 10;
 
-    result.insert(digit);
+    result.add(digit);
     total = (total - digit) / 10;
   }
 
@@ -67,7 +67,7 @@ const B = (l1, l2) => {
   });
 
   // using string trickery
-  ('' + total).split('').forEach(n => result.insert(n));
+  ('' + total).split('').forEach(n => result.add(n));
 
   return result;
 }

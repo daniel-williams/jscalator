@@ -11,9 +11,28 @@ class LinkedList {
     this._head = head;
   }
 
-  insert(data) {
+  add(data) {
     let newNode = new LinkedListNode(data);
 
+    // special case: head node is null
+    if(!this._head) {
+      this.head = newNode;
+    } else {
+      let node = this.head;
+
+      // find the last node in list
+      while(node.next) {
+        node = node.next;
+      }
+
+      // insert new node
+      node.next = newNode;
+    }
+
+    this._count++;
+  }
+
+  addNode(newNode) {
     // special case: head node is null
     if(!this._head) {
       this.head = newNode;
@@ -131,7 +150,7 @@ class LinkedList {
     }
   }
 
-  getElementAt(index) {
+  getNodeAt(index) {
     if(index < 0 || index > this.size - 1) { return null; }
 
     let node = this.head;
@@ -172,7 +191,7 @@ class LinkedListNode {
 const buildList = (chars) => {
   let list = new LinkedList();
 
-  chars.split('').forEach(c => list.insert(c));
+  chars.split('').forEach(c => list.add(c));
 
   return list;
 }

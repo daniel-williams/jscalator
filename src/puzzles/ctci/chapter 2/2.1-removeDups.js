@@ -72,7 +72,7 @@ function getTestList() {
   let list = new LinkedList();
   let chars = 'abbbbbcxxyyyzz';
 
-  chars.split('').forEach(c => list.insert(c));
+  chars.split('').forEach(c => list.add(c));
 
   return list;
 }
