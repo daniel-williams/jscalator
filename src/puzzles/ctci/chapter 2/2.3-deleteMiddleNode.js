@@ -1,3 +1,5 @@
+const { buildListFromChars, LinkedList } = require('../../../structures');
+
 // Implement an algorithm to delete a node in the middle (i.e., any node but
 // the first and last node, not necessarily the exact middle) of a singly
 // linked list, given only access to that node.
@@ -18,20 +20,10 @@ function A(node) {
   }
 }
 
-const LinkedList = require('../../../structures/linkedList/LinkedList').LinkedList;
 
-function getTestList() {
-  let list = new LinkedList();
-  let chars = 'abcde';
-
-  chars.split('').forEach(c => list.add(c));
-
-  return list;
-}
-
-let testList = getTestList();
+let list = buildListFromChars('abcde');
 
 console.log('');
-console.log(`A) Given list [${testList.toArray()}]`);
-A(testList.getNodeAt(2));
-console.log(`   -> [${testList.toArray()}]`)
+console.log(`A) Given list [${list.toArray()}]`);
+A(list.getNodeAt(2));
+console.log(`   -> [${list.toArray()}]`)

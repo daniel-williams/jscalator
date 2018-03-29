@@ -1,3 +1,5 @@
+const { buildListFromChars, LinkedList } = require('../../../structures');
+
 // Write code to remove duplicates from an unsorted linked list.
 // FOLLOW UP
 // How would you solve this problem if a temporary buffer is not allowed?
@@ -66,19 +68,7 @@ module.exports = {
 };
 
 
-const LinkedList = require('../../../structures/linkedList/LinkedList').LinkedList;
+let list = buildListFromChars('abbbbbcxxyyyzz');
 
-function getTestList() {
-  let list = new LinkedList();
-  let chars = 'abbbbbcxxyyyzz';
-
-  chars.split('').forEach(c => list.add(c));
-
-  return list;
-}
-
-let testAList = getTestList();
-let testBList = getTestList();
-
-console.log(`A) Given list ${testAList.toArray()} --> ${A(testAList).toArray()}`);
-console.log(`B) Given list ${testBList.toArray()} --> ${B(testBList).toArray()}`);
+console.log(`A) Given list ${list.toArray()} --> ${A(list).toArray()}`);
+console.log(`B) Given list ${list.toArray()} --> ${B(list).toArray()}`);

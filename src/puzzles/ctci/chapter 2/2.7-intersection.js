@@ -1,4 +1,4 @@
-const { buildList, LinkedList } = require('../../../structures/linkedList/LinkedList');
+const { buildListFromChars, LinkedList } = require('../../../structures');
 
 // Given two (singly) linked lists, determine if the two lists intersect.
 // Return the intersecting node. Note that the intersection is define based
@@ -97,9 +97,9 @@ module.exports = {
 };
 
 
-let la1 = buildList('abcdef123456');
-let la2 = buildList('xyz');
-let la3 = buildList('xyz');
+let la1 = buildListFromChars('abcdef123456');
+let la2 = buildListFromChars('xyz');
+let la3 = buildListFromChars('xyz');
 let result;
 
 la3.addNode(la1.getNodeAt(6));

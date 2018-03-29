@@ -1,3 +1,5 @@
+const { buildListFromChars, LinkedList } = require('../../../structures');
+
 // Write code to partition a linked list around a value x, such that
 // all nodes less than x come before all nodes greater than or equal to x.
 // If x is contained within the list, the values of x only need to be
@@ -49,19 +51,9 @@ function A(list, partition) {
   return list;
 }
 
-const { LinkedList } = require('../../../structures/linkedList/LinkedList');
 
-function getTestList() {
-  let list = new LinkedList();
-  let chars = '128326945028';
-
-  chars.split('').forEach(c => list.add(c));
-
-  return list;
-}
-
-let testList = getTestList();
+let list = buildListFromChars('128326945028');
 
 console.log('');
-console.log(`A) Given list [${testList.toArray()}] and partition of 5`);
-console.log(`   -> [${A(testList, 5).toArray()}]`);
+console.log(`A) Given list [${list.toArray()}] and partition of 5`);
+console.log(`   -> [${A(list, 5).toArray()}]`);

@@ -1,4 +1,4 @@
-const { buildList, LinkedList } = require('../../../structures/linkedList/LinkedList');
+const { buildListFromChars, LinkedList } = require('../../../structures');
 
 // Implement a function to check if a linked list is a palindrome.
 
@@ -46,9 +46,9 @@ module.exports = {
 };
 
 
-let list1 = buildList('abcddcba');
-let list2 = buildList('abcdedcba');
-let list3 = buildList('abcddcab');
+let list1 = buildListFromChars('abcddcba');
+let list2 = buildListFromChars('abcdedcba');
+let list3 = buildListFromChars('abcddcab');
 
 console.log('');
 console.log(`A) Given [${list1.toArray()}] -> ${A(list1)}`);

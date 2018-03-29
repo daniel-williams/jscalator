@@ -1,4 +1,4 @@
-const { buildList, LinkedList } = require('../../../structures/linkedList/LinkedList');
+const { buildListFromChars, LinkedList } = require('../../../structures');
 
 // You have two numbers represented by a linked list, where each node
 // contains a single digit. The digits are stored in reverse order,
@@ -78,15 +78,15 @@ module.exports = {
 };
 
 
-let l1 = buildList('716');
-let l2 = buildList('592');
+let l1 = buildListFromChars('716');
+let l2 = buildListFromChars('592');
 
 console.log('');
 console.log(`A) Given [${l1.toArray()}] and [${l2.toArray()}]`);
 console.log(`   -> [${A(l1, l2).toArray()}]`);
 
-l1 = buildList('617');
-l2 = buildList('295');
+l1 = buildListFromChars('617');
+l2 = buildListFromChars('295');
 
 console.log('');
 console.log(`B) Given [${l1.toArray()}] and [${l2.toArray()}]`);

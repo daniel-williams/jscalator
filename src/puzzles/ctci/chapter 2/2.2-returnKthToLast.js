@@ -1,3 +1,5 @@
+const { buildListFromChars, LinkedList } = require('../../../structures');
+
 // Implement an algorithm to find the kth to last element of a singly linked list.
 
 // Ideas
@@ -46,17 +48,7 @@ module.exports = {
   s1: C,
 };
 
-const LinkedList = require('../../../structures/linkedList/LinkedList').LinkedList;
 
-function getTestList() {
-  let list = new LinkedList();
-  let chars = 'abcdefghijklmnopqrstuvwxyz';
+let list = buildListFromChars('abcdefghijklmnopqrstuvwxyz');
 
-  chars.split('').forEach(c => list.add(c));
-
-  return list;
-}
-
-let testList = getTestList();
-
-console.log(`C) Given list ${testList.toArray()} & k = 10 -> [${C(testList, 10).map(x=>x.data).join(',')}]`)
+console.log(`C) Given list ${list.toArray()} & k = 10 -> [${C(list, 10).map(x=>x.data).join(',')}]`)

@@ -1,4 +1,4 @@
-const { buildList, LinkedList } = require('../../../structures/linkedList/LinkedList');
+const { buildListFromChars, LinkedList } = require('../../../structures');
 
 // Given a circular linked list, implement an algorithm that
 // returns the node at the beginning of the loop.
@@ -62,7 +62,7 @@ module.exports = {
 };
 
 
-let list = buildList('abcduvwxyz');
+let list = buildListFromChars('abcduvwxyz');
 
 console.log(`C) Given [${list.toArray()}] and add ref to u from z`);
 list.getNodeAt(9).next = list.getNodeAt(4);

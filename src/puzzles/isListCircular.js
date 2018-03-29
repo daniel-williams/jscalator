@@ -1,4 +1,4 @@
-const { buildList, LinkedList } = require('../structures/linkedList/LinkedList');
+const { buildListFromChars, LinkedList } = require('../structures');
 
 // Given a singuly linked list, implement an algorithm that
 // determines if the list is circular
@@ -34,7 +34,7 @@ module.exports = {
 };
 
 
-let list = buildList('abcdef123456');
+let list = buildListFromChars('abcdef123456');
 let result;
 
 console.log('');
