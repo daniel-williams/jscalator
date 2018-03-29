@@ -1,9 +1,62 @@
+const { Stack } = require('../../../structures');
+
 // How would you design a stack which, in addition to push and pop, has a function min
 // which returns the minimum element? Push, pop and min should all operate in 0(1) time.
 
 // Ideas
 // A) Implement stack as linked list (doubly linked) and track min node in addition to
 //    the tail
+
+// Clarification
+// The min() func should be like peek() vs. pop(), that is it doesn't remove the
+// value from the stack. Poorly worded question? (IMHO, it could've been better).
+// Soooo....
+
+// B) Implement a stack in a normal way, but add a second stack (minStack) to track
+//    min values. On push, if value <= minStack.peek(), push value to minStack. On Pop,
+//    if value === minStack.peek(), pop value from minStack.
+
+class BStackMin {
+  constructor() {
+    this.storage = {};
+    this.topOfStack = 0;
+    this.minStack = new Stack();
+  }
+
+  get size() {
+    return this.topOfStack;
+  }
+
+  push(value) {
+    this.storage[this.topOfStack] = value;
+    this.topOfStack++;
+
+    if(this.minStack.size === 0 || value <= this.minStack.peek()) {
+      this.minStack.push(value);
+    }
+  }
+
+  pop() {
+    if(this.topOfStack > 0) {
+      this.topOfStack--;
+      let value = this.storage[this.topOfStack];
+
+      if(value === this.minStack.peek()) {
+        this.minStack.pop();
+      }
+
+      return value;
+    }
+  }
+
+  peek() {
+    return this.storage[this.topOfStack - 1];
+  }
+
+  min() {
+    return this.minStack.peek();
+  }
+}
 
 class AStackMin {
   constructor() {
@@ -76,3 +129,15 @@ class StackNode {
 }
 
 module.exports = {};
+
+
+let stack = new BStackMin();
+let nums = [7,9,5,3,9,0,3,8];
+
+nums.forEach(n => stack.push(n));
+nums.forEach(x => {
+  console.log('');
+  console.log(`stack.peek() -> ${stack.peek()}`);
+  console.log(`stack.min() -> ${stack.min()}`);
+  console.log(`stack.pop() -> ${stack.pop()}`);
+});
