@@ -25,7 +25,7 @@ const A = (amount) => {
 
   // other than base case (amount === 0), every recursive call uses a coin
   return minCoinCount + 1;
-}
+};
 // Time: O(a^c), where a = amount and c = number of coins
 // Space: O(c)
 
@@ -55,10 +55,37 @@ const B = (amount) => {
 
     return minCoinCountCache[amount];
   }
-}
+};
 // Time: O(a*c), where a = amount and c = number of coins
 // Space: O(c)
 
+const C = (amount) => {
+  let minCoinCountCache = [0];
+
+  return makeChange(amount);
+
+  function makeChange(amount) {
+    for(let i = 1; i <= amount; i++) {
+      let minCoinCount = Number.MAX_VALUE;
+
+      coins.forEach(coin => {
+        if(i - coin >= 0) {
+          let coinCount = minCoinCountCache[i - coin] + 1;
+
+          if(coinCount < minCoinCount) {
+            minCoinCount = coinCount;
+          }
+        }
+      });
+
+      minCoinCountCache[i] = minCoinCount;
+    }
+
+    return minCoinCountCache[amount];
+  }
+};
+// Time: O(a*c), where a = amount and c = number of coins
+// Space: O(c)
 
 module.exports = {};
 
@@ -70,6 +97,7 @@ const tests = [
 ];
 
 tests.forEach(n => {
-  console.log(`A) ${A(n)} coins required to make change for ${n}.`);
-  console.log(`B) ${B(n)} coins required to make change for ${n}.`);
+  // console.log(`A) ${A(n)} coins required to make change for ${n}.`);
+  // console.log(`B) ${B(n)} coins required to make change for ${n}.`);
+  console.log(`C) ${C(n)} coins required to make change for ${n}.`);
 });
