@@ -9,7 +9,7 @@ class Queue {
     return this._highIndex - this._lowIndex;
   }
 
-  unqueue(value) {
+  enqueue(value) {
     this._storage[this._highIndex] = value;
     this._highIndex++;
   }
