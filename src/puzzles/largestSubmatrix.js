@@ -40,6 +40,41 @@ const A = (arr) => {
 //       : 3^(n + m) -> at each step, we make three recursive calls
 // Space: O(n + m) -> recursive stack
 
+const B = (arr) => {
+  let max = 0;
+  let cache = [];
+
+  // make cache 2D array to match arr
+  arr[0].forEach((x, i) => cache[i] = []);
+
+  for(let col = arr[0].length - 1; col >= 0; col--) {
+    for(let row = arr.length - 1; row >= 0; row--) {
+      max = Math.max(max, checkSubArray(row, col));
+    }
+  }
+
+  return max;
+
+  function checkSubArray(row, col) {
+    if(row === arr.length || col === arr[0].length) {
+      return 0;
+    }
+
+    if(cache[row][col] == null) {
+      cache[row][col] = arr[row][col]
+        ? 1 + Math.min(
+          checkSubArray(row, col + 1),
+          checkSubArray(row + 1, col),
+          checkSubArray(row + 1, col + 1))
+        : 0;
+    }
+
+    return cache[row][col];
+  }
+}
+// Time: O(n * m)
+// Space: O(n * m) --> owing to the cache
+
 module.exports = {};
 
 
@@ -51,4 +86,4 @@ arr.forEach(row => {
   row.forEach(col => values.push(col ? 1 : 0));
   console.log(`[ ${values.join(', ')}]`);
 });
-console.log(`The largest subarray is ${A(arr)}`);
+console.log(`The largest subarray is ${B(arr)}`);
