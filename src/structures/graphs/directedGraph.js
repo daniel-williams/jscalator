@@ -59,13 +59,12 @@ class DirectedGraph {
     function depthFirstHelper(node) {
       if(visited.has(node)) { return; }
 
+      fn(node);
       visited.add(node);
 
       node.nodes.toArray().forEach(n => {
         depthFirstHelper(n);
       });
-
-      fn(node);
     }
   }
 }
