@@ -127,6 +127,28 @@ class LinkedList {
     }
   }
 
+  removeNode(targetNode) {
+    let node = this.head;
+
+    // special case: remove head node
+    if(node === targetNode) {
+      this.head = node.next;
+      this._count--;
+    } else {
+      while(node.next) {
+        // find node immediately preceeding the node to remove
+        if(node.next === targetNode) {
+          // reset next pointer to remove target node
+          node.next = node.next.next;
+          this._count--;
+          break;
+        }
+
+        node = node.next;
+      }
+    }
+  }
+
   removeAt(index) {
     // ensure index is valid
     if(index >= 0 && index < this.size) {
@@ -178,6 +200,21 @@ class LinkedList {
 
   get size() {
     return this._count
+  }
+
+  *[Symbol.iterator]() {
+    let node = this.head;
+
+    while(node) {
+      yield node;
+      node = node.next;
+    }
+  }
+
+  forEach(fn) {
+    for(let n of this) {
+      fn(n);
+    }
   }
 }
 
