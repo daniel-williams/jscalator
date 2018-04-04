@@ -128,21 +128,21 @@ class MinHeap {
 };
 
 
-const nums = [7, 13, 51, 10, 45, 4, 42, 60];
-const inserts = [23,87,49,4];
+// const nums = [7, 13, 51, 10, 45, 4, 42, 60];
+// const inserts = [23,87,49,4];
 
-let heap = new MinHeap(nums);
+// let heap = new MinHeap(nums);
 
-console.log('');
-console.log(`init heap with [${nums.join(',')}]`);
-heap.print();
+// console.log('');
+// console.log(`init heap with [${nums.join(',')}]`);
+// heap.print();
 
-console.log('');
-inserts.forEach(n => heap.insert(n));
-console.log(`${inserts.length} inserts -> [${inserts.join(',')}]`);
-heap.print();
+// console.log('');
+// inserts.forEach(n => heap.insert(n));
+// console.log(`${inserts.length} inserts -> [${inserts.join(',')}]`);
+// heap.print();
 
-let extracts = new Array(3).fill(null).map(() => heap.extractMin());
-console.log('');
-console.log(`extract min ${extracts.length} times -> [${extracts.join(',')}]`);
-heap.print();
+// let extracts = new Array(3).fill(null).map(() => heap.extractMin());
+// console.log('');
+// console.log(`extract min ${extracts.length} times -> [${extracts.join(',')}]`);
+// heap.print();

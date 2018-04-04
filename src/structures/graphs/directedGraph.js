@@ -14,14 +14,28 @@ class DirectedGraph {
   }
 
   createLink(a, b) {
-    a.addNode(b);
+    let aNode = this.findNode(a);
+    let bNode = this.findNode(b);
+
+    if(aNode && bNode) {
+      aNode.addNode(bNode);
+    }
   }
 
   removeLink(a, b) {
-    a.removeNode(b);
+    let aNode = this.findNode(a);
+    let bNode = this.findNode(b);
+
+    if(aNode && bNode) {
+      aNode.removeNode(bNode);
+    }
   }
 
-  BFS(fn) {
+  findNode(v) {
+    return this.nodes.find(n => n.value === v);
+  }
+
+  forEachBF(fn) {
     if(!this.nodes.length) { return; }
 
     let visited = new Set();
@@ -49,7 +63,7 @@ class DirectedGraph {
     });
   }
 
-  DFS(fn) {
+  forEachDF(fn) {
     if(!this.nodes.length) { return; }
 
     const visited = new Set();
@@ -91,37 +105,3 @@ module.exports = {
   DirectedGraph,
   DirectedGraphNode,
 };
-
-// // create graph
-// const graph = new DirectedGraph();
-
-// // create nodes, keep refs & add to graph
-// const gn = [];
-// for(let i = 0; i < 6; i++) {
-//   gn.push(new DirectedGraphNode(i));
-//   graph.addNode(gn[i]);
-// }
-
-// // using refs, create links between nodes
-// const links = [
-//   [0,1],
-//   [0,4],
-//   [0,5],
-//   [1,3],
-//   [1,4],
-//   [2,1],
-//   [3,2],
-//   [3,4],
-// ];
-// for(let i = 0; i < links.length; i++) {
-//   graph.createLink(gn[links[i][0]], gn[links[i][1]]);
-// }
-
-// // test breath-first & depth-first search algorithms
-// let results = [];
-// graph.BFS(n => results.push(n.value));
-// console.log(`BFS -> ${results.join(',')}`);
-
-// results = [];
-// graph.DFS(n => results.push(n.value));
-// console.log(`DFS -> ${results.join(',')}`);
