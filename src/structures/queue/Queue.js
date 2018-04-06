@@ -29,6 +29,10 @@ class Queue {
   peek() {
     return this._storage[this._lowIndex];
   }
+
+  isEmpty() {
+    return !this.size;
+  }
 }
 
 module.exports = {
