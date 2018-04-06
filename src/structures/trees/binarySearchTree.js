@@ -60,11 +60,3 @@ class TreeNode {
 module.exports = {
   BinarySearchTree,
 };
-
-
-// let tree = new BinarySearchTree();
-// let values = [45, 23, 117, 4, 85, 93, 22, 1, 15, 34];
-
-// values.forEach(x => tree.add(x));
-
-// console.log(`In order [${tree.toArray().join(',')}]`);
