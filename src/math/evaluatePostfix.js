@@ -32,12 +32,8 @@ const A = (postFix) => {
   return stack.pop();
 };
 
-
-const tests = [
-  '3 4 2 * +',
-  '3 4 2 * + 1 - 2 /',
-];
-
-tests.forEach(test => {
-  console.log(`Given the postfix '${test}' -> ${A(test)}`);
-});
+module.exports = {
+  solutions: [
+    A,
+  ],
+};
