@@ -35,6 +35,14 @@ class DirectedGraph {
     return this.nodes.find(n => n.value === v);
   }
 
+  toArray() {
+    let result = [];
+
+    this.forEachBF(n => result.push(n));
+
+    return result;
+  }
+
   forEachBF(fn) {
     if(!this.nodes.length) { return; }
 
