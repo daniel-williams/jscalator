@@ -21,7 +21,7 @@ class BinarySearchTree {
           if(!node.left) {
             node.left = newNode;
             node.left.parent = node;
-            this.visitNodesToRoot(node.left, this.calculateNodeHeight);
+            this.visitNodesToRoot(this.calculateNodeHeight, node.left);
             break;
           } else {
             node = node.left;
@@ -30,7 +30,7 @@ class BinarySearchTree {
           if(!node.right) {
             node.right = newNode;
             node.right.parent = node;
-            this.visitNodesToRoot(node.right, this.calculateNodeHeight);
+            this.visitNodesToRoot(this.calculateNodeHeight, node.right);
             break;
           } else {
             node = node.right;
@@ -40,23 +40,33 @@ class BinarySearchTree {
     }
   }
 
+  find(value) {
+    let node = null;
+
+    this.visitNodesInOrder(n => {
+      if(n.value === value) { node = n; }
+    });
+
+    return node;
+  }
+
   toArray() {
     let result = [];
 
-    this.visitNodesInOrder(this._root, n => result.push(n.value));
+    this.visitNodesInOrder(n => result.push(n.value));
 
     return result;
   }
 
-  visitNodesInOrder(node, fn) {
+  visitNodesInOrder(fn, node = this._root) {
     if(!node) { return; }
 
-    this.visitNodesInOrder(node.left, fn);
+    this.visitNodesInOrder(fn, node.left);
     fn(node);
-    this.visitNodesInOrder(node.right, fn);
+    this.visitNodesInOrder(fn, node.right);
   }
 
-  visitNodesToRoot(node, fn) {
+  visitNodesToRoot(fn, node = null) {
     if(!node) { return; }
 
     while(node) {
