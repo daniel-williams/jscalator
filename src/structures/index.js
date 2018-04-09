@@ -12,12 +12,13 @@ const {
 } = require('./priorityQueue');
 const { Queue } = require('./queue');
 const { Stack } = require('./stack');
-const { BinarySearchTree } = require('./trees');
+const { BinarySearchTree, BinaryTree } = require('./trees');
 
 
 module.exports = {
   ArrayList,
   BinarySearchTree,
+  BinaryTree,
   buildListFromChars,
   DirectedGraph,
   DirectedGraphNode,

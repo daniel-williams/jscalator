@@ -8,33 +8,36 @@ class BinarySearchTree {
   }
 
   add(value) {
-    let newNode = new TreeNode(value);
+    let newNode = value instanceof TreeNode
+      ? value
+      : new TreeNode(value);
 
     // special case: root === null
     if(!this._root) {
       this._root = newNode;
-    } else {
-      let node = this._root;
+      return;
+    }
 
-      while(true) {
-        if(newNode.value < node.value) {
-          if(!node.left) {
-            node.left = newNode;
-            node.left.parent = node;
-            this.visitNodesToRoot(this.calculateNodeHeight, node.left);
-            break;
-          } else {
-            node = node.left;
-          }
+    let node = this._root;
+
+    while(true) {
+      if(newNode.value < node.value) {
+        if(!node.left) {
+          node.left = newNode;
+          node.left.parent = node;
+          this.visitNodesToRoot(this.calculateNodeHeight, node.left);
+          break;
         } else {
-          if(!node.right) {
-            node.right = newNode;
-            node.right.parent = node;
-            this.visitNodesToRoot(this.calculateNodeHeight, node.right);
-            break;
-          } else {
-            node = node.right;
-          }
+          node = node.left;
+        }
+      } else {
+        if(!node.right) {
+          node.right = newNode;
+          node.right.parent = node;
+          this.visitNodesToRoot(this.calculateNodeHeight, node.right);
+          break;
+        } else {
+          node = node.right;
         }
       }
     }

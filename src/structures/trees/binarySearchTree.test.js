@@ -8,8 +8,8 @@ describe('BinarySearchTree', () => {
   describe(`add(n) n -> ${values.join(', ')}`, () => {
     values.forEach(v => tree.add(v));
 
-    it('should contain 14 nodes', () => {
-      expect(tree.toArray().length === 14);
+    it(`should contain ${values.length} nodes`, () => {
+      expect(tree.toArray().length === values.length);
     });
   });
 
