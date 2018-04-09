@@ -1,3 +1,4 @@
+const { ArrayList } = require('./arrayList');
 const {
   buildListFromChars,
   LinkedList,
@@ -15,6 +16,7 @@ const { BinarySearchTree } = require('./trees');
 
 
 module.exports = {
+  ArrayList,
   BinarySearchTree,
   buildListFromChars,
   DirectedGraph,

@@ -1,6 +1,6 @@
 class ArrayList {
   constructor() {
-    this._items = new Array(2).fill(null);
+    this._items = new Array();
     this._count = 0;
   }
 
@@ -25,15 +25,6 @@ class ArrayList {
   }
 }
 
-
-let list = new ArrayList();
-
-console.log('empty -> ', list.toArray());
-
-list.insert('daniel');
-list.insert('lacey');
-list.insert('lexus');
-list.insert('manly');
-list.insert('master chief');
-
-console.log('items -> ', list.toArray());
+module.exports = {
+  ArrayList,
+};
