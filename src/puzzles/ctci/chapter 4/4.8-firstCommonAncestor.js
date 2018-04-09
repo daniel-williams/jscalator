@@ -96,7 +96,8 @@ const D = (n1, n2, root) => {
   return helper(n1, n2, root);
 
   function helper(n1, n2, root) {
-    if(root == null || n1 == root || n2 == root) { return root; }
+    if(root == null) { return null; }
+    if(root === n1 || root === n2) { return root; }
 
     let n1IsLeft = covers(root.left, n1);
     let n2IsLeft = covers(root.left, n2);
@@ -105,7 +106,7 @@ const D = (n1, n2, root) => {
 
     let nextRoot = n1IsLeft ? root.left : root.right;
 
-    return (n1, n2, nextRoot);
+    return helper(n1, n2, nextRoot);
   }
 
   function covers(n1, n2) {
@@ -116,14 +117,45 @@ const D = (n1, n2, root) => {
   }
 }
 
+
+// bottom-up
+const E = (n1, n2, root) => {
+  if(root == null) { return null; }
+  // if node found, pass it up
+  if(root === n1 || root === n2) { return root; }
+
+  let left = E(n1, n2, root.left);
+  // if ancestor already found, continue passing it up the stack
+  if(left != null && left !== n1 && left !== n2) { return left; }
+
+  let right = E(n1, n2, root.right);
+  // if ancestor already found, continue passing it up the stack
+  if(right != null && right !== n1 && right !== n2) { return right; }
+
+  // if left and right are in different subtress, root is ancestor
+  if(left && right) { return root; }
+
+  return left || right; // pass up a found node or null
+};
+
 const bst = new BinarySearchTree();
 const values = [42,117,23,5,25,1,13,7,99,68,51];
 
 values.forEach(value => bst.add(value));
 
-let n1 = bst.find(values[5]);
-let n2 = bst.find(values[4]);
-let result = D(n1, n2, bst._root);
 
-console.log(`Given BST primed with [${values.join(',')}]`);
-console.log(`first common ancestor of ${n1.value} and ${n2.value} -> ${result && result.value}`);
+const solutions = [A,B,C,D,E];
+const tests = [[3,5],[4,5],[4,10]];
+
+solutions.forEach((s, i) => {
+  console.log('');
+  console.log(`${i + 1}) Given BST primed with [${values.join(',')}]`);
+
+  tests.forEach(test => {
+    let n1 = bst.find(values[test[0]]);
+    let n2 = bst.find(values[test[1]]);
+    let result = s(n1, n2, bst._root);
+
+    console.log(`   -> common ancestor of ${n1.value} and ${n2.value} -> ${result && result.value}`);
+  })
+});
