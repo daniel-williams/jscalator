@@ -55,8 +55,8 @@ class BinaryTree {
 
         if(node.value === v) { return node; }
 
-        if(node.left) { q.enqueue(left); }
-        if(node.right) { q.enqueue(right); }
+        if(node.left) { q.enqueue(node.left); }
+        if(node.right) { q.enqueue(node.right); }
       }
     }
 
