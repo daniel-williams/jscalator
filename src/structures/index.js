@@ -1,10 +1,10 @@
 const { ArrayList } = require('./arrayList');
+const { DirectedGraph, DirectedGraphNode } = require('./graphs');
 const {
   buildListFromChars,
   LinkedList,
   LinkedListNode,
 } = require('./linkedList');
-const { DirectedGraph, DirectedGraphNode } = require('./graphs');
 const {
   LinkedListPriorityQueue,
   MaxHeapPriorityQueue,
@@ -12,6 +12,7 @@ const {
 } = require('./priorityQueue');
 const { Queue } = require('./queue');
 const { Stack } = require('./stack');
+const { StringBuilder } = require('./stringBuilder');
 const { BinarySearchTree, BinaryTree } = require('./trees');
 
 
@@ -29,4 +30,5 @@ module.exports = {
   MinHeap,
   Queue,
   Stack,
+  StringBuilder
 };

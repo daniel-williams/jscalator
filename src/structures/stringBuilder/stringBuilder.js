@@ -28,12 +28,3 @@ class StringBuilderItem {
 module.exports = {
   StringBuilder,
 };
-
-
-let builder = new StringBuilder();
-builder.append('Hello ');
-builder.append('Daniel');
-builder.appendLine();
-builder.append('I hope this message find you well.')
-
-console.log('--> ', builder.toString());
