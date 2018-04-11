@@ -16,9 +16,7 @@
 //    bitwise OR with N.
 
 const A = (n, m, i, j) => {
-  let mask = (1 << (j - i + 2)); // + 2 makes i and j inclusive
-  mask = mask - 1; // flip bits, gives 1s
-  mask = ~(mask << i); // shift i bits and invert
+  let mask = (~0 << j + i) | ((1 << i) - 1);
 
   return (n & mask) | (m << i);
 };
