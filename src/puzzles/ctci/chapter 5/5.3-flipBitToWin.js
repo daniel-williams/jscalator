@@ -12,37 +12,67 @@
 // A) Starting at first 1, iterate through digits and count 1s and 0s,
 //    pushing counts to array. Walking through array, odd indexes
 //    seperated by an even index of 1 would indicate a possible flip.
+// B) Right to left, process digits, keeping a count of contiguous ones.
+//    If digit is zero, set previous count to current and recalculate max.
 
 const A = (n) => {
   let binArray = (n >>> 0).toString(2).split('');
-  let countArray = [0, 1]; // prime to handle leading ones
+  let countArray = [];
   let countOnes = true;
   let count = 0;
-  let result = 0;
+  let maxCount = 0;
 
   binArray.forEach(n => {
-    if(countOnes && n == 0 || !countOnes && n == 1) {
+    if(countOnes && n == 1 || !countOnes && n == 0) {
+      count++;
+    } else {
       countArray.push(count);
       countOnes = !countOnes;
       count = 1;
-    } else {
-      count++;
     }
   });
 
-  countArray.push(count); // collect last count
+  if(countOnes) { countArray.push(count); } // collect last count
 
-  if(countArray.length >= 3) {
-    for(let i = 0; i < countArray.length - 2; i = i + 2) {
-      if(countArray[i + 1] === 1) {
-        result = Math.max(result, countArray[i] + countArray[i + 2] + 1);
-      }
+  // odd indexes are count of ones, even are count of zeros
+  if(countArray.length) {
+    for(let i = 0; i < countArray.length; i = i + 2) {
+      let previous = i >= 2 && countArray[i - 1] === 1
+        ? countArray[i - 2]
+        : 0;
+
+      maxCount = Math.max(maxCount, 1 + previous + countArray[i]);
     }
   }
 
-  return result;
+  return maxCount;
 };
 
+const B = (n) => {
+  let currentCount = 0;
+  let previousCount = 0;
+  let maxCount = 0;
+
+  const updateMax = () => maxCount = Math.max(maxCount, 1 + currentCount + previousCount);
+
+  while(n !== 0) {
+    if((n & 1) === 0) {
+      updateMax();
+      previousCount = currentCount;
+      currentCount = 0;
+    } else {
+      currentCount++;
+    }
+
+    n >>>= 1;
+  }
+
+  updateMax();
+
+  return maxCount;
+}
+
+const solutions = [A, B];
 const tests = [
   0,
   1,
@@ -53,8 +83,12 @@ const tests = [
   -343,
 ];
 
-tests.forEach((test, i) => {
-  console.log(`${i + 1}) Given ${test} (${bin(test)}) -> ${A(test)}`);
+solutions.forEach((s, i) => {
+  console.log('');
+  console.log(`Solution #${i + 1}`);
+  tests.forEach((test, j) => {
+    console.log(`${j + 1}) Given ${test} (${bin(test)}) -> ${s(test)}`);
+  });
 });
 
 function bin(v) {
