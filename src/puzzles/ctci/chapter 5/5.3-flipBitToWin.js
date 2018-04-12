@@ -1,3 +1,5 @@
+const { bin } = require('./helpers');
+
 // You have an integer and you can flip exactly one bit from a O to a 1.
 // Write code to find the length of the longest sequence of 1 s you could
 // create.
@@ -90,13 +92,3 @@ solutions.forEach((s, i) => {
     console.log(`${j + 1}) Given ${test} (${bin(test)}) -> ${s(test)}`);
   });
 });
-
-function bin(v) {
-  return padLeft((v >>> 0).toString(2));
-}
-
-function padLeft(v, n = 32, c = '0') {
-  if(v.length >= n) { return v; }
-
-  return new Array(n - v.length).fill(c).join('') + v;
-}
