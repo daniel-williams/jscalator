@@ -6,19 +6,21 @@
 
 const isValidWords = (words, list) => {
   if (!words.length) return true;
+
   let lastIndexMatched = 0;
 
-  for (let i = 0; i <= words.length; i++) {
+  for (let i = 1; i <= words.length; i++) {
     if (list.includes(words.substring(0, i))) {
       lastIndexMatched = i;
-      // branch
+
+      // branch to solve sub-problem
       if(isValidWords(words.substring(lastIndexMatched), list)) {
         return true;
       }
     }
   }
 
-  return lastIndexMatched === words.length - 1;
+  return false;
 }
 
 const list = [
@@ -30,6 +32,7 @@ const list = [
 ];
 const tests = [
   ['', list],
+  ['c', list],
   ['catsup', list],
   ['catdogmouse', list],
   ['catdogsup', list],
